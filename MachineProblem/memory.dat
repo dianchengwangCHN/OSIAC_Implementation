@@ -1,0 +1,288 @@
+********  test 1     
+FFFF   AC
+0009   X
+0009   SP
+0000   PC
+0000   CVZN   
+0100    clr r ac
+0111    clr (x)
+0122    clr (sp)+
+0142    clr n(sp)
+0002    
+0132    clr -(sp)
+0150    clr abs
+000B
+0000    halt
+0001
+0002
+0003
+0004
+********  test 2
+0009   AC
+0008   X
+0009   SP
+0000   PC
+0000   CVZN   
+0201    inc r x
+0210    inc (ac)
+0220    inc (ac)+
+0240    inc n(ac)
+0002
+0230    inc -(ac)
+0250    inc abs
+000B
+0000    halt
+0001
+0002
+0003
+0004
+********  test 3
+0009   AC
+0009   X
+0009   SP
+0000   PC
+0000   CVZN   
+0300    dec r ac
+0311    dec (x)
+0321    dec (x)+
+0341    dec n(x)
+0002
+0331    dec -(x)
+0350    dec abs
+000B
+0000    halt
+0001
+0002
+0003
+0004
+******** test 4
+FFFF   AC
+0000   X
+0009   SP
+0000   PC
+0000   CVZN   
+0400    neg r ac
+0412    neg (sp)
+0422    neg (sp)+
+0442    neg n(sp)
+0002
+0432    neg -(sp)
+0450    neg abs
+000B
+0000    halt
+FFFF
+0002
+FFFD
+0004
+******** test 5
+FFFF   AC
+0000   X
+0009   SP
+0000   PC
+0000   CVZN   
+0500    comp r ac
+0512    comp (sp)
+0522    comp (sp)+
+0542    comp n(sp)
+0002
+0532    comp -(sp)
+0550    comp abs
+000B
+0000    halt
+FFFF
+0002
+FFFD
+0004
+********  test 6
+FFFF   AC
+0001   X
+0003   SP
+0000   PC
+0000   CVZN   
+0100    clr r ac
+0650    jmp abs
+0004
+0200    inc r ac
+0200    inc r ac
+0000    halt
+********  test7
+FFFF   AC
+0001   X
+0003   SP
+0000   PC
+0000   CVZN   
+0100    clr r ac
+0612    jmp (sp)
+0200    inc r ac
+0200    inc r ac
+0000    halt
+********  test 8
+FFFF   AC
+0001   X
+0002   SP
+0000   PC
+0000   CVZN   
+0100    clr r ac
+0622    jmp (sp)+
+0200    inc r ac
+0200    inc r ac
+0000    halt
+********  test 9
+FFFF   AC
+0009   X
+000B   SP
+0000   PC
+0000   CVZN   
+0800    tst r ac
+0811    tst (x)
+0821    tst (x)+
+0841    tst n(x)
+0002    
+0832    tst -(sp)
+0850    tst abs
+000E
+0000    halt
+0001
+FFFF
+0002
+0000
+F000
+********  test A
+FFFE   AC
+0002   X
+0003   SP
+0000   PC
+0000   CVZN
+0100    clr r ac
+0A01    dbra x
+0002
+0100    clr r ac
+0102    clr r sp
+0101    clr r x
+0000    halt
+********  test B
+FFFE   AC
+0002   X
+0003   SP
+0000   PC
+0000   CVZN
+0100    clr r ac
+0A00    dbra ac
+0002
+0100    clr r ac
+0102    clr r sp
+0101    clr r x
+0000    halt
+********  test C
+FFFE   AC
+0002   X
+0003   SP
+0000   PC
+1010   CVZN
+0028    CC
+0034    SV
+0022    CZ
+0031    SN
+0000    halt
+
+**********test00
+0010 AC
+0010 X
+0001 SP
+0000 PC
+0000 CVZN
+0100
+0200
+0231
+0321
+0342
+000F
+0401
+0450
+0010
+0501
+0640
+000B
+0810
+0080
+0000
+FFFF
+8001
+
+**************test11
+
+0010 AC
+0001 X
+0000 SP
+0000 PC
+0000 CVZN
+0A02 DBRA SP
+0001
+0201 INC AC
+0301 DEC AC
+0000 HALT
+************* test12
+
+0010 AC
+0011 X
+0001 SP
+0000 PC
+0000 CVZN
+0102
+0202
+0301
+0A01
+0004
+0606
+0001
+0401
+0080
+0501
+0802
+0742
+0006
+0202
+0000
+
+***************test jsr/rts
+0005 AC
+0011 X
+0005 SP
+0000 PC
+0000 CVZN
+0720 
+0005
+0001
+0001
+0001
+0401
+0080
+
+***************test jsr/rts
+0005 AC
+0011 X
+0005 SP
+0000 PC
+0000 CVZN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

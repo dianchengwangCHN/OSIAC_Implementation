@@ -1,0 +1,527 @@
+﻿*************  Ethan Yu  *************
+*************Qiuchen Zhai*************
+ st=0 rt='[pc]->mar'     imar rac=1 rn=3 
+ st=1 rt='[[mar]]-> mdr' read
+ st=2 rt='[mdr]->ir'     omdr iir
+ st=3 rt='[pc]+1->q'     rac=1 rn=3 ib p1 oadder
+ st=4 rt='[q]->pc'       oq wac=1 wn=3
+      cond='ir158' value=0 nst=10
+      cond='ir1512' value=0 nst=450
+      nst=27
+
+ st=10 rt='judge halt/(RTS/Branch)'
+       cond='ir7' value=0 nst=11
+       nst=20
+ st=11 rt='judge sc/cc/HALT' 
+       cond='ir5' value=0 nst=19
+       cond='ir5' value=1 nst=800
+ st=19 halt  
+ st=20 rt='judge RTS/BRANCH'
+       cond='ir0' value=1 nst=420
+       cond='ir1' value=1 nst=420
+       nst=750 
+******judge register addr mode or imdt mode****************
+ st=27 rt='judge register addr mode'
+       cond='ir118' value=0 nst=28
+       cond='ir118' value=6 nst=30
+       cond='ir64'  value=0 nst=36
+******SAD is register addr mode***************************
+ st=28 rt='[src]->t2' rac=2 it2  
+ st=29 rt='[dst]->t4' rac=3 it4  
+       cond='ir64'  value=0  nst=50
+       cond='ir64'  value=1  nst=60
+       cond='ir64'  value=2  nst=70
+       cond='ir64'  value=3  nst=80
+       cond='ir64'  value=4  nst=100
+       cond='ir64'  value=5  nst=120
+*****SAD is imdt mode************************************
+ st=30 rt='[pc]->mar' rac=1 rn=3 imar  
+ st=31 rt='[[mar]]->mdr' read
+ st=32 rt='[mdr]->t2' omdr it2 
+ st=33 rt='[pc]+1->q' rac=1 rn=3 ib p1 oadder 
+ st=34 rt='[q]->pc'   oq wac=1 wn=3  
+ st=35 rt='[dst]->t4' rac=3 it4  
+       cond='ir64' value=0   nst=50
+       cond='ir64' value=1   nst=60
+       cond='ir64' value=2   nst=70
+       cond='ir64' value=3   nst=80
+       cond='ir64' value=4   nst=100
+       cond='ir64' value=5   nst=120
+******DAD is register addr mode**************************
+ st=36 rt='[dst]->t2'   rac=3 it2  
+ st=37 rt='[src]->t4'   rac=2 it4  
+       cond='ir118' value=0   nst=50
+       cond='ir118' value=1   nst=60
+       cond='ir118' value=2   nst=70
+       cond='ir118' value=3   nst=80
+       cond='ir118' value=4   nst=100
+       cond='ir118' value=5   nst=120
+****mode 0***************************************
+ st=50 rt='do nothing'
+ nst=150
+****mode 1 (Rk)**********************************
+ st=60 rt='[t4]->t3'     ot4 it3  
+ st=61 rt='[t3]->mar'    ot3 imar 
+ st=62 rt='[[mar]]->mdr' read  
+ st=63 rt='[mdr]->t4'    omdr it4  
+ nst=150
+******mode 2 (Rk)+ *******************************
+ st=70 rt='[t4]->t3'     ot4 it3  
+ st=71 rt='[t3]->mar'    ot3 imar  
+ st=72 rt='[[mar]]->mdr' read  
+ st=73 rt='[mdr]->t4'    omdr it4 
+ st=74 rt='[t3]+1->q'    ot3 ib p1 oadder 
+ st=75 rt='[q]->t5'      oq it5  
+ nst=130
+*******mode 3 -(Rk)********************************
+ st=80 rt='[t4]->t3'     ot4 it3 
+ st=81 rt='-[t3]->q'     ot3 ib comp p1 oadder  
+ st=82 rt='[q]+1->q'     oq ib p1 oadder  
+ st=83 rt='-[q]->q'      oq ib comp p1 oadder  
+ st=84 rt='[q]->t3'      oq it3  
+ st=85 rt='[t3]->mar'    ot3 imar  
+ st=86 rt='[[mar]]->mdr' read  
+ st=87 rt='[mdr]->t4'    omdr it4  
+ st=88 rt='[t3]->t5'     ot3 it5
+ nst=130
+********mode 4 n(Rk)*****************************
+ st=100 rt='[pc]->mar'    rac=1 rn=3 imar  
+ st=101 rt='[[mar]]->mdr' read  
+ st=102 rt='[mdr]->t1'    omdr it1  
+ st=103 rt='[t4]->t3'     ot4 it3  
+ st=104 rt='[t3]+[t1]->q' oa ot3 ib oadder 
+ st=105 rt='[q]->t3'      oq it3  
+ st=106 rt='[t3]->mar'    ot3 imar  
+ st=107 rt='[[mar]]->mdr' read  
+ st=108 rt='[mdr]->t4'    omdr it4 
+ st=109 rt='[pc]+1->q'    rac=1 rn=3 ib p1 oadder  
+ st=110 rt='[q]->pc'      oq wac=1 wn=3   
+ nst=150
+********mode 5 n*********************************
+ st=120 rt='[pc]->mar'     rac=1 rn=3 imar  
+ st=121 rt='[[mar]]->mdr'  read 
+ st=122 rt='[mdr]->t3'     omdr it3  
+ st=123 rt='[pc]+1->q'     rac=1 rn=3 ib p1 oadder 
+ st=124 rt='[q]->pc'       wac=1 wn=3 oq  
+ st=125 rt='[t3]->mar'     ot3 imar 
+ st=126 rt='[[mar]]->mdr'  read  
+ st=127 rt='[mdr]->t4'     omdr it4  
+ nst=150
+*****put EA back to register*****************
+ st=130 rt='put EA back to Rk'
+        cond='ir64' value=0 nst=132
+ st=131 rt='[t5]->Rk' ot5 wac=3
+ nst=150
+ st=132 rt='[t5]->Rk' ot5 wac=2
+ nst=150
+******judge t4 is src or dst******************
+ st=150 rt='judge t4' 
+        cond='ir118' value=0 nst=200
+        cond='ir118' value=6 nst=200
+	cond='ir64'  value=0 nst=175
+
+******DAD is register addr mode*****************
+ st=175 rt='[t4]->t5' ot4 it5  
+ st=176 rt='[t2]->t4' ot2 it4  
+ st=177 rt='[t5]->t2' ot5 it2  
+ nst=200
+
+*******judge what type of operation*********************
+ st=200 rt='judge what type of operation'
+        cond='ir1512' value=1 nst=220
+        cond='ir1512' value=2 nst=250
+        cond='ir1512' value=3 nst=270
+        cond='ir1512' value=4 nst=300
+        cond='ir1512' value=5 nst=350
+        cond='ir1512' value=6 nst=400
+*****type:ADD****************************
+ st=220 rt='[t2]->t1' ot2 it1  
+ st=221 rt='[t1]+[t4]->q' ot4 ib oa oadder newc newv 
+        cond='ir64' value=0 nst=230 
+	nst=231
+ st=230 rt='[q]->dst' oq wac=3  newz newn
+ nst=0
+ st=231 rt='[t3]->mar' ot3 imar  
+ st=232 rt='[q]->mdr' oq imdr  newz newn
+ st=233 rt='[mdr]->[mar]' write 
+ nst=0
+******type:SUB***************************
+ st=250 rt='[t4]->t1' ot4 it1
+ st=251 rt='[t1]-[t2]->q' oa ot2 ib comp p1 oadder newc newv
+ st=252 rt='judge C'
+        cond='c' value=0 nst=253
+        nst=254
+ st=253 rt='set C' setc 
+ nst=259
+ st=254 rt='clr C' clrc
+ nst=259
+
+******need to flip the C******************
+
+ st=259 rt='judge DAD'
+        cond='ir64' value=0 nst=260
+        nst=261
+ st=260 rt='[q]->dst' oq wac=3 newz newn
+ nst=0
+ st=261 rt='[t3]->mar' ot3 imar
+ st=262 rt='[q]->mdr' oq imdr newz newn
+ st=263 rt='[mdr]->[mar]' write 
+ nst=0
+*****type:Move***************************
+ st=270 rt='judge DAD is whether register or not'
+        cond='ir64' value=0 nst=280
+        nst=281
+ st=280 rt='[t2]->dst' ot2 wac=3 newz newn clrc clrv
+ nst=0
+ st=281 rt='[t3]->mar' ot3 imar
+ st=282 rt='[t2]->mdr' ot2 imdr newz newn
+ st=283 rt='[mdr]->[mar]' write
+ nst=0
+******type:EXG**************************
+`````````judge DAD is register mode or not`````````` 
+ st=300  rt='judge DAD is whether register or not'
+         cond='ir64' value=0 nst=310
+         nst=320
+````````dst is register``````````````````````````
+ st=310 rt='[t2]->dst' ot2 wac=3  
+         cond='ir118' value=0 nst=311
+         nst=312 
+
+````````src dst are both register`````````````````````` 
+ st=311 rt='[t4]->src' ot4 wac=2 
+ nst=0
+
+````````src is not register```````````
+ st=312 rt='[t4]->mdr' ot4 imdr
+ st=313 rt='[t3]->mar' ot3 imar 
+ st=314 rt='[mdr]->[mar]' write 
+ nst=0
+````````dst is not register``````````````
+ st=320 rt='[t4]->src' ot4 wac=2 
+ st=321 rt='[t3]->mar' ot3 imar
+ st=322 rt='[t2]->mdr' ot2 imdr 
+ st=323 rt='[mdr]->[mar]' write 
+ nst=0
+*******type:OR***************************
+ st=350 rt='[t2] or [t4]->q' ot2 ot4 ib oadder
+        cond='ir64' value=0 nst=360
+        nst=370
+^.^```````DAD is register mode`````````````
+ st=360 rt='[q]->dst' oq wac=3 newz newn clrv clrc
+ nst=0
+```````DAD is not register mode`````````
+ st=370 rt='[q]->mdr' oq imdr newz newn
+ st=371 rt='[t3]->mar' ot3 imar 
+ st=372 rt='[mdr]->[mar]' write clrc clrv
+ nst=0 
+
+********type:AND**************************
+ st=400 rt='[t2]->t1'     ot2 it1
+ st=401 rt='[t4]+[t1]->q' ot4 ib oa oadder
+ st=402 rt='[q]->t1'      oq it1
+ st=403 rt='[t2]or[t4]->q' ot2 ot4 ib oadder
+ st=404 rt='[t1]-[q]->q' oa oq ib comp p1 oadder
+        cond='ir64' value=0 nst=410
+        nst=412
+```````DAD is register`````````
+ st=410 rt='[q]->dst' oq wac=3 newz newn clrc clrv
+ nst=0
+```````DAD is not register `````
+ st=412 rt='[t3]->mar' ot3 imar
+ st=413 rt='[q]->mdr' oq imdr newz newn clrc clrv
+ st=414 rt='[mdr]->[mar]' write 
+ nst=0
+**********************************************
+
+********Branch**********************************
+ st=420 rt='judge ir5'
+        cond='ir5' value=0 nst=421
+        cond='ir5' value=1 nst=422
+``````ir5=0```````
+ st=421 rt='judge ibrch'
+        cond='ibrch' value=1 nst=430
+        cond='ibrch' value=0 nst=425
+```````ir5=1```````
+ st=422 rt='judge ibrch'
+        cond='ibrch' value=0 nst=430
+        cond='ibrch' value=1 nst=425
+
+ st=425 rt='[pc]+1->q' rac=1 rn=3 ib p1 oadder
+ st=426 rt='[q]->pc' oq wac=1 wn=3 
+ nst=0
+````````branch```````````````
+ st=430 rt='[pc]->mar' rac=1 rn=3 imar
+ st=431 rt='[[mar]]->mdr' read
+ st=432 rt='[mdr]->t1' omdr it1
+ st=433 rt='[pc]+1+[t1]->q' rac=1 rn=3 ib p1 oa oadder
+ st=434 rt='[q]->pc' oq wac=1 wn=3 
+ nst=0     
+
+
+
+*** Place dst operand in a designated temporary register t3 ***
+ st=450 rt='dst->t3'          rac=3 it3      
+        cond='ir64' value=0 nst=451
+        cond='ir64' value=1 nst=452
+        cond='ir64' value=2 nst=455
+        cond='ir64' value=3 nst=458
+        cond='ir64' value=4 nst=465
+        cond='ir64' value=5 nst=475
+
+*** Place the EA of src in another designated temporary register t5 ***
+''' the addressing mode of destination: Rk '''
+ st=451 rt='[t3]->t5'          ot3 it5
+        nst=484
+''' the addressing mode of destination: (Rk) '''
+ st=452 rt='[t3]->mar'         ot3 imar
+ st=453 rt='[[mar]]->mdr'      read
+ st=454 rt='[mdr]->t5'         omdr it5
+        nst=484
+''' the addressing mode of destination: (Rk)+ '''
+ st=455 rt='[t3]->mar'         ot3 imar
+ st=456 rt='[[mar]]->mdr'      read
+ st=457 rt='[mdr]->t5'         omdr it5
+        nst=484
+''' the addressing mode of destination: -(Rk) '''
+ st=458 rt='-[t3]+1->q'        ot3 ib comp p1 oadder 
+ st=459 rt='-[q]->q'           oq ib comp oadder 
+ st=460 rt='[q]->t3'           oq it3 
+ st=461 rt='[t3]->mar'         ot3 imar
+ st=462 rt='[[mar]]->mdr'      read
+ st=463 rt='[mdr]->t5'         omdr it5
+ st=464 rt='[t3]->dst'         ot3 wac=3
+        nst=484
+''' the addressing mode of destination: n(Rk) '''
+ st=465 rt='[pc]->mar'         imar rac=1 rn=3
+ st=466 rt='[[mar]]->mdr'      read 
+ st=467 rt='[mdr]->t1'         omdr it1
+ st=468 rt='[pc]+1->q'         rac=1 rn=3 ib p1 oadder 
+ st=469 rt='[q]->pc'           oq wac=1 wn=3 
+ st=470 rt='[t1]+[t3]->q'      oa ot3 ib oadder 
+ st=471 rt='[q]->t3'           oq it3 
+ st=472 rt='[t3]->mar'         ot3 imar
+ st=473 rt='[[mar]]->mdr'      read
+ st=474 rt='[mdr]->t5'         omdr it5    
+        nst=484
+''' the addressing mode of destination: n ''' 
+ st=475 rt='[pc]->mar'         imar rac=1 rn=3
+ st=476 rt='[[mar]]->mdr'      read 
+ st=477 rt='[mdr]->t3'         omdr it3
+ st=478 rt='[pc]+1->q'         rac=1 rn=3 ib p1 oadder 
+ st=479 rt='[q]->pc'           oq wac=1 wn=3  
+ st=480 rt='[t3]->mar'         ot3 imar
+ st=481 rt='[[mar]]->mdr'      read
+ st=482 rt='[mdr]->t5'         omdr it5
+ st=483 rt='[t3]->mar'         ot3 imar
+        nst=484
+
+*** single operands ***
+ st=484 rt='single operand'    
+        cond='ir118' value=1 nst=490
+        cond='ir118' value=2 nst=527
+        cond='ir118' value=3 nst=537
+        cond='ir118' value=4 nst=545
+        cond='ir118' value=5 nst=550
+        cond='ir118' value=6 nst=560
+        cond='ir118' value=7 nst=570
+        cond='ir118' value=8 nst=585
+        cond='ir118' value=10 nst=590
+
+*** ClR dst (0->dst)***
+ st=490 rt='-[t5]->q'        ot5 ib comp p1 oadder
+ st=491 rt='[q]->t1'           oq it1
+ st=492 rt='[t1]+[t5]->q'      oa ot5 ib oadder newn newz clrv clrc
+        cond='ir64' value=0 nst=500
+        cond='ir64' value=1 nst=504
+        cond='ir64' value=2 nst=510
+        cond='ir64' value=3 nst=504
+        cond='ir64' value=4 nst=520
+        cond='ir64' value=5 nst=520
+
+
+''' When addressing mode of destination: Rk '''
+ st=500 rt='[q]->dst'          oq wac=3 newz newn
+        nst=0
+''' When the addressing mode of destination:(Rk) & -(Rk) '''
+ st=504 rt='[q]->mdr'          oq imdr newz newn
+ st=505 rt='dst->mar'          rac=3 imar
+ st=506 rt='[mdr]->mar'        write
+        nst=0
+''' When the addressing mode of destination:(Rk)+ '''
+ st=510 rt='[q]->mdr'          oq imdr newz newn
+ st=511 rt='dst->mar'          rac=3 imar
+ st=512 rt='[mdr]->[mar]'      write 
+ st=513 rt='[t3]+1->q'         ot3 ib p1 oadder 
+ st=514 rt='q->dst'            oq wac=3 
+        nst=0
+''' When the addressing mode of destination:n(Rk) & n '''
+ st=520 rt='[q]->mdr'          oq imdr newz newn
+ st=521 rt='[mdr]->mar'        write
+        nst=0
+
+
+
+*** INC dst ([dst]+1->dst) ***
+ st=527 rt='[t5]+1->q' ot5 ib p1 oadder newc newv
+        cond='ir64' value=0 nst=500
+        cond='ir64' value=1 nst=504
+        cond='ir64' value=2 nst=510
+        cond='ir64' value=3 nst=504
+        cond='ir64' value=4 nst=520
+        cond='ir64' value=5 nst=520
+ 
+*** DEC dst ([dst]-1->dst) ***
+ st=537 rt='[t5]->t1'          ot5 it1 
+ st=538 rt='[t1]-1->q'         oa comp oadder newc newv
+        cond='ir64' value=0 nst=500
+        cond='ir64' value=1 nst=504
+        cond='ir64' value=2 nst=510
+        cond='ir64' value=3 nst=504
+        cond='ir64' value=4 nst=520
+        cond='ir64' value=5 nst=520
+
+*** NEG dst ***
+ st=545 rt='-[t5]->q'          ot5 ib comp p1 oadder newc newv 
+        cond='ir64' value=0 nst=500
+        cond='ir64' value=1 nst=504
+        cond='ir64' value=2 nst=510
+        cond='ir64' value=3 nst=504
+        cond='ir64' value=4 nst=520
+        cond='ir64' value=5 nst=520
+*** COMP dst ***
+ st=550 rt='-[t5]+1->q'        ot5 ib comp oadder clrv clrc 
+        cond='ir64' value=0 nst=500
+        cond='ir64' value=1 nst=504
+        cond='ir64' value=2 nst=510
+        cond='ir64' value=3 nst=504
+        cond='ir64' value=4 nst=520
+        cond='ir64' value=5 nst=520
+
+*** JMP dst ***
+ st=560 rt='[t3]->pc' ot3 wac=1 wn=3
+        cond='ir64' value=0 nst=0
+        cond='ir64' value=1 nst=0
+        cond='ir64' value=2 nst=513
+        cond='ir64' value=3 nst=0
+        cond='ir64' value=4 nst=0
+        cond='ir64' value=5 nst=0
+        
+
+*** JSR dst ***
+ st=570 rt='[sp]->t1'          rac=1 rn=2 it1
+ st=571 rt='[t1]-1->q'         oa ib comp oadder
+ st=572 rt='[q]->sp'           oq wac=1 wn=2
+ st=573 rt='[pc]->mdr'         imdr rac=1 rn=3
+ st=574 rt='[sp]->mar'         rac=1 rn=2 imar
+ st=575 rt='[mdr]->[mar]'      write 
+ st=576 rt='[t3]->pc'          ot3 wac=1 wn=3
+        cond='ir64' value=0 nst=0
+        cond='ir64' value=1 nst=0
+        cond='ir64' value=2 nst=513
+        cond='ir64' value=3 nst=0
+        cond='ir64' value=4 nst=0
+        cond='ir64' value=5 nst=0
+        nst=0
+
+*** TST dst ***
+ st=585 rt='[t5]->q'           ot5 ib oadder clrc clrv newn newz
+        cond='ir64' value=0 nst=0
+        cond='ir64' value=1 nst=0
+        cond='ir64' value=2 nst=513
+        cond='ir64' value=3 nst=0
+        cond='ir64' value=4 nst=0
+        cond='ir64' value=5 nst=0 
+         nst=0
+
+*** DBRA ***
+ st=590 rt='[t5]->t1'          ot5 it1
+ st=591 rt='[t1]-1->q'         oa ib comp oadder
+        cond='ir64' value=0 nst=600
+        cond='ir64' value=1 nst=620
+        cond='ir64' value=2 nst=630
+        cond='ir64' value=3 nst=620
+        cond='ir64' value=4 nst=650
+        cond='ir64' value=5 nst=650
+''' When addressing mode of destination: Rk '''
+ st=600 rt='[q]->dst'          oq wac=3 
+        
+        nst=670
+''' When the addressing mode of destination:(Rk) & -(Rk) '''
+ st=620 rt='[q]->mdr'          oq imdr 
+ st=621 rt='dst->mar'          rac=3 imar
+ st=622 rt='[mdr]->mar'        write
+        nst=670
+''' When the addressing mode of destination:(Rk)+ '''
+ st=630 rt='[q]->mdr'          oq imdr 
+ st=631 rt='dst->mar'          rac=3 imar
+ st=632 rt='[mdr]->[mar]'      write 
+ st=633 rt='[t3]+1->q'         ot3 ib p1 oadder 
+ st=634 rt='[q]->dst'            oq wac=3 
+        nst=670
+''' When the addressing mode of destination:n(Rk) & n '''
+ st=650 rt='[q]->mdr'          oq imdr 
+ st=651 rt='[mdr]->mar'        write
+        nst=670
+''' [PC]+offset->PC '''
+ st=670 rt='[q]+1->q'           oq ib p1 oadder
+ st=671 rt='[q]->t5'            oq it5
+        cond='busz' value=1 nst=673
+        nst=675
+ st=673 rt='[pc]+1->q'          rac=1 rn=3 ib p1 oadder
+ st=674 rt='[q]->pc'            oq wac=1 wn=3
+ nst=0
+        
+ st=675 rt='[pc]->mar'         imar rac=1 rn=3
+ st=676 rt='[[mar]]->mdr'      read 
+ st=677 rt='[mdr]->t1'         omdr it1
+ st=678 rt='[pc]+1->q'         rac=1 rn=3 ib p1 oadder
+ st=679 rt='[q]->pc'           oq wac=1 wn=3 
+ st=680 rt='[t1]+[pc]->q'      oa rac=1 rn=3 ib oadder
+ st=681 rt='[q]->pc'           oq wac=1 wn=3
+        nst=0
+
+******RTS**************
+ st=750 rt='[sp]->mar'         rac=1 rn=2 imar
+ st=751 rt='[[mar]]->mdr'      read
+ st=752 rt='[mdr]->pc'         omdr wac=1 wn=3
+ st=753 rt='[sp]+1->q'         rac=1 rn=2 ib p1 oadder
+ st=754 rt='[q]->sp'           oq wac=1 wn=2
+ nst=0
+
+
+*******SC/CC****
+ st=800 rt='judge S/C'
+        cond='ir4' value=1 nst=801
+        cond='ir4' value=0 nst=850
+''''' set '''''
+ st=801 rt='judge the set digit'
+        cond='ir3' value=1 nst=802
+        cond='ir2' value=1 nst=803
+        cond='ir1' value=1 nst=804
+        cond='ir0' value=1 nst=825
+ st=802 rt='set c'              setc
+        nst=0
+ st=803 rt='set v'              setv
+        nst=0
+ st=804 rt='set z'              newz
+        nst=0
+ st=825 rt='set n'              ib comp oadder
+ st=826 rt='[q]->t1'            oq it1 newn
+        nst=0
+'''' clear ''''
+ st=850 rt='judge the clear digit'
+        cond='ir3' value=1 nst=852
+        cond='ir2' value=1 nst=853
+        cond='ir1' value=1 nst=854
+        cond='ir0' value=1 nst=875
+ st=852 rt='clear c'              clrc
+        nst=0
+ st=853 rt='clear v'              clrv
+        nst=0
+ st=854 rt='clear n'              ib comp oadder
+ st=855 rt='[q]->t1'              oq it1 newz
+        nst=0
+ st=875 rt='clear n'              ib p1 oadder
+ st=876 rt='[q]->t1'              oq it1 newn
+        nst=0
+

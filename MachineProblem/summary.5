@@ -1,0 +1,23 @@
+  At end of instruction 1
+    ac    x   sp   pc   t1    q   t2   t3   t4   t5  mar  mdr   ir cvzn
+     0    0    9    1    0    0    0 FFFF    0    0    0  500  500 0010 
+ memory write::    0->M(   9)
+  At end of instruction 2
+    ac    x   sp   pc   t1    q   t2   t3   t4   t5  mar  mdr   ir cvzn
+     0    0    9    2    0    0    0 FFFF    0    9    9    0  512 0010 
+ memory write:: FFFF->M(   9)
+  At end of instruction 3
+    ac    x   sp   pc   t1    q   t2   t3   t4   t5  mar  mdr   ir cvzn
+     0    0    A    3    0 FFFF    0    0    0    9    9 FFFF  522 0001 
+ memory write:: FFFB->M(   C)
+  At end of instruction 4
+    ac    x   sp   pc   t1    q   t2   t3   t4   t5  mar  mdr   ir cvzn
+     0    0    A    5    A FFFB    0    4    0    C    C FFFB  542 0001 
+ memory write::    0->M(   9)
+  At end of instruction 5
+    ac    x   sp   pc   t1    q   t2   t3   t4   t5  mar  mdr   ir cvzn
+     0    0    9    6    A    0    0 FFFF    0    9    9    0  532 0010 
+ memory write::    2->M(   B)
+  At end of instruction 6
+    ac    x   sp   pc   t1    q   t2   t3   t4   t5  mar  mdr   ir cvzn
+     0    0    9    8    A    2    0 FFFD    0    B    B    2  550 0000 

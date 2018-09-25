@@ -1,0 +1,167 @@
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : (  800/  2048.)(  811/  2065.)(  821/  2081.)(  841/  2113.)
+     4/   4. : (    2/     2.)(  832/  2098.)(  850/  2128.)(    E/    14.)
+     8/   8. : (    0/     0.)(    1/     1.)( FFFF/    -1.)(    2/     2.)
+     C/  12. : (    0/     0.)( F000/ -4096.)(    0/     0.)(    0/     0.)
+ state is decimal format; registers are hex 
+   starting instruction 1
+    0 FFFF    9   B   0    0    0    0    0    0    0   0    0    0 0000 [pc] -> mar     
+    1 FFFF    9   B   0    0    0    0    0    0    0   0    0    0 0000 [[mar]] -> mdr  
+    2 FFFF    9   B   0    0    0    0    0    0    0   0  800    0 0000 [mdr] -> ir     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    3 FFFF    9   B   0    0    0    0    0    0    0   0  800  800 0000 [pc]+1 -> q     
+    4 FFFF    9   B   0    0    1    0    0    0    0   0  800  800 0000 [q] -> pc       
+    5 FFFF    9   B   1    0    1    0    0    0    0   0  800  800 0000 --              
+    6 FFFF    9   B   1    0    1    0    0    0    0   0  800  800 0000 --              
+  230 FFFF    9   B   1    0    1    0    0    0    0   0  800  800 0000 --              
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  240 FFFF    9   B   1    0    1    0    0    0    0   0  800  800 0000 [d] -> t3       
+  295 FFFF    9   B   1    0    1    0 FFFF    0    0   0  800  800 0000 --              
+  380 FFFF    9   B   1    0    1    0 FFFF    0    0   0  800  800 0000 [t3]-0 -> q     
+   starting instruction 2
+    0 FFFF    9   B   1    0 FFFF    0 FFFF    0    0   0  800  800 0001 [pc] -> mar     
+    1 FFFF    9   B   1    0 FFFF    0 FFFF    0    0   1  800  800 0001 [[mar]] -> mdr  
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    2 FFFF    9   B   1    0 FFFF    0 FFFF    0    0   1  811  800 0001 [mdr] -> ir     
+    3 FFFF    9   B   1    0 FFFF    0 FFFF    0    0   1  811  811 0001 [pc]+1 -> q     
+    4 FFFF    9   B   1    0    2    0 FFFF    0    0   1  811  811 0001 [q] -> pc       
+    5 FFFF    9   B   2    0    2    0 FFFF    0    0   1  811  811 0001 --              
+    6 FFFF    9   B   2    0    2    0 FFFF    0    0   1  811  811 0001 --              
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  230 FFFF    9   B   2    0    2    0 FFFF    0    0   1  811  811 0001 --              
+  250 FFFF    9   B   2    0    2    0 FFFF    0    0   1  811  811 0001 [d] -> mar      
+  251 FFFF    9   B   2    0    2    0 FFFF    0    0   9  811  811 0001 [[mar]] -> mdr  
+  252 FFFF    9   B   2    0    2    0 FFFF    0    0   9    1  811 0001 [mdr] -> t3     
+  253 FFFF    9   B   2    0    2    0    1    0    0   9    1  811 0001 [d] -> t5       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  295 FFFF    9   B   2    0    2    0    1    0    9   9    1  811 0001 --              
+  380 FFFF    9   B   2    0    2    0    1    0    9   9    1  811 0001 [t3]-0 -> q     
+   starting instruction 3
+    0 FFFF    9   B   2    0    1    0    1    0    9   9    1  811 0000 [pc] -> mar     
+    1 FFFF    9   B   2    0    1    0    1    0    9   2    1  811 0000 [[mar]] -> mdr  
+    2 FFFF    9   B   2    0    1    0    1    0    9   2  821  811 0000 [mdr] -> ir     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    3 FFFF    9   B   2    0    1    0    1    0    9   2  821  821 0000 [pc]+1 -> q     
+    4 FFFF    9   B   2    0    3    0    1    0    9   2  821  821 0000 [q] -> pc       
+    5 FFFF    9   B   3    0    3    0    1    0    9   2  821  821 0000 --              
+    6 FFFF    9   B   3    0    3    0    1    0    9   2  821  821 0000 --              
+  230 FFFF    9   B   3    0    3    0    1    0    9   2  821  821 0000 --              
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  250 FFFF    9   B   3    0    3    0    1    0    9   2  821  821 0000 [d] -> mar      
+  251 FFFF    9   B   3    0    3    0    1    0    9   9  821  821 0000 [[mar]] -> mdr  
+  252 FFFF    9   B   3    0    3    0    1    0    9   9    1  821 0000 [mdr] -> t3     
+  253 FFFF    9   B   3    0    3    0    1    0    9   9    1  821 0000 [d] -> t5       
+  254 FFFF    9   B   3    0    3    0    1    0    9   9    1  821 0000 [d]+1 -> q      
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  255 FFFF    9   B   3    0    A    0    1    0    9   9    1  821 0000 [q] -> d        
+  295 FFFF    A   B   3    0    A    0    1    0    9   9    1  821 0000 --              
+  380 FFFF    A   B   3    0    A    0    1    0    9   9    1  821 0000 [t3]-0 -> q     
+   starting instruction 4
+    0 FFFF    A   B   3    0    1    0    1    0    9   9    1  821 0000 [pc] -> mar     
+    1 FFFF    A   B   3    0    1    0    1    0    9   3    1  821 0000 [[mar]] -> mdr  
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    2 FFFF    A   B   3    0    1    0    1    0    9   3  841  821 0000 [mdr] -> ir     
+    3 FFFF    A   B   3    0    1    0    1    0    9   3  841  841 0000 [pc]+1 -> q     
+    4 FFFF    A   B   3    0    4    0    1    0    9   3  841  841 0000 [q] -> pc       
+    5 FFFF    A   B   4    0    4    0    1    0    9   3  841  841 0000 --              
+    6 FFFF    A   B   4    0    4    0    1    0    9   3  841  841 0000 --              
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  230 FFFF    A   B   4    0    4    0    1    0    9   3  841  841 0000 --              
+  270 FFFF    A   B   4    0    4    0    1    0    9   3  841  841 0000 [pc] -> mar     
+  271 FFFF    A   B   4    0    4    0    1    0    9   4  841  841 0000 [[mar]] -> mdr  
+  272 FFFF    A   B   4    0    4    0    1    0    9   4    2  841 0000 [pc]+1 -> q     
+  273 FFFF    A   B   4    0    5    0    1    0    9   4    2  841 0000 [q] -> pc       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  280 FFFF    A   B   5    0    5    0    1    0    9   4    2  841 0000 [d] -> t1       
+  281 FFFF    A   B   5    A    5    0    1    0    9   4    2  841 0000 [t1]+[mdr] -> q 
+  282 FFFF    A   B   5    A    C    0    1    0    9   4    2  841 0000 [q] -> mar      
+  283 FFFF    A   B   5    A    C    0    1    0    9   C    2  841 0000 [[mar]] -> mdr  
+  284 FFFF    A   B   5    A    C    0    1    0    9   C    0  841 0000 [mdr] -> t3     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  285 FFFF    A   B   5    A    C    0    0    0    9   C    0  841 0000 [q] -> t5       
+  295 FFFF    A   B   5    A    C    0    0    0    C   C    0  841 0000 --              
+  380 FFFF    A   B   5    A    C    0    0    0    C   C    0  841 0000 [t3]-0 -> q     
+   starting instruction 5
+    0 FFFF    A   B   5    A    0    0    0    0    C   C    0  841 0010 [pc] -> mar     
+    1 FFFF    A   B   5    A    0    0    0    0    C   5    0  841 0010 [[mar]] -> mdr  
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    2 FFFF    A   B   5    A    0    0    0    0    C   5  832  841 0010 [mdr] -> ir     
+    3 FFFF    A   B   5    A    0    0    0    0    C   5  832  832 0010 [pc]+1 -> q     
+    4 FFFF    A   B   5    A    6    0    0    0    C   5  832  832 0010 [q] -> pc       
+    5 FFFF    A   B   6    A    6    0    0    0    C   5  832  832 0010 --              
+    6 FFFF    A   B   6    A    6    0    0    0    C   5  832  832 0010 --              
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  230 FFFF    A   B   6    A    6    0    0    0    C   5  832  832 0010 --              
+  260 FFFF    A   B   6    A    6    0    0    0    C   5  832  832 0010 [d] -> t1       
+  261 FFFF    A   B   6    B    6    0    0    0    C   5  832  832 0010 [d]-1 -> q      
+  262 FFFF    A   B   6    B    A    0    0    0    C   5  832  832 0010 [q] -> mar      
+  263 FFFF    A   B   6    B    A    0    0    0    C   A  832  832 0010 [[mar]] -> mdr  
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  264 FFFF    A   B   6    B    A    0    0    0    C   A FFFF  832 0010 [mdr] -> t3     
+  265 FFFF    A   B   6    B    A    0 FFFF    0    C   A FFFF  832 0010 [q] -> t5       
+  266 FFFF    A   B   6    B    A    0 FFFF    0    A   A FFFF  832 0010 [q] -> d        
+  295 FFFF    A   A   6    B    A    0 FFFF    0    A   A FFFF  832 0010 --              
+  380 FFFF    A   A   6    B    A    0 FFFF    0    A   A FFFF  832 0010 [t3]-0 -> q     
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   starting instruction 6
+    0 FFFF    A   A   6    B FFFF    0 FFFF    0    A   A FFFF  832 0001 [pc] -> mar     
+    1 FFFF    A   A   6    B FFFF    0 FFFF    0    A   6 FFFF  832 0001 [[mar]] -> mdr  
+    2 FFFF    A   A   6    B FFFF    0 FFFF    0    A   6  850  832 0001 [mdr] -> ir     
+    3 FFFF    A   A   6    B FFFF    0 FFFF    0    A   6  850  850 0001 [pc]+1 -> q     
+    4 FFFF    A   A   6    B    7    0 FFFF    0    A   6  850  850 0001 [q] -> pc       
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    5 FFFF    A   A   7    B    7    0 FFFF    0    A   6  850  850 0001 --              
+    6 FFFF    A   A   7    B    7    0 FFFF    0    A   6  850  850 0001 --              
+  230 FFFF    A   A   7    B    7    0 FFFF    0    A   6  850  850 0001 --              
+  270 FFFF    A   A   7    B    7    0 FFFF    0    A   6  850  850 0001 [pc] -> mar     
+  271 FFFF    A   A   7    B    7    0 FFFF    0    A   7  850  850 0001 [[mar]] -> mdr  
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  272 FFFF    A   A   7    B    7    0 FFFF    0    A   7    E  850 0001 [pc]+1 -> q     
+  273 FFFF    A   A   7    B    8    0 FFFF    0    A   7    E  850 0001 [q] -> pc       
+  290 FFFF    A   A   8    B    8    0 FFFF    0    A   7    E  850 0001 [mdr] -> mar    
+  291 FFFF    A   A   8    B    8    0 FFFF    0    A   E    E  850 0001 [mdr] -> t5     
+  292 FFFF    A   A   8    B    8    0 FFFF    0    E   E    E  850 0001 [[mar]] -> mdr  
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+  293 FFFF    A   A   8    B    8    0 FFFF    0    E   E    0  850 0001 [mdr] -> t3     
+  295 FFFF    A   A   8    B    8    0    0    0    E   E    0  850 0001 --              
+  380 FFFF    A   A   8    B    8    0    0    0    E   E    0  850 0001 [t3]-0 -> q     
+   starting instruction 7
+    0 FFFF    A   A   8    B    0    0    0    0    E   E    0  850 0010 [pc] -> mar     
+    1 FFFF    A   A   8    B    0    0    0    0    E   8    0  850 0010 [[mar]] -> mdr  
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+    2 FFFF    A   A   8    B    0    0    0    0    E   8    0  850 0010 [mdr] -> ir     
+    3 FFFF    A   A   8    B    0    0    0    0    E   8    0    0 0010 [pc]+1 -> q     
+    4 FFFF    A   A   8    B    9    0    0    0    E   8    0    0 0010 [q] -> pc       
+    7 FFFF    A   A   9    B    9    0    0    0    E   8    0    0 0010 --              
+    8 FFFF    A   A   9    B    9    0    0    0    E   8    0    0 0010 --              
+
+   st   ac    x  sp  pc   t1    q   t2   t3   t4   t5 mar  mdr   ir cvzn reg xfer
+   15 FFFF    A   A   9    B    9    0    0    0    E   8    0    0 0010 --              
+  test 9: Halt instruction executed 
+  Hex/Decimal memory dump (least significant word on left)
+  Only lines with at least one nonzero value printed
+     0/   0. : (  800/  2048.)(  811/  2065.)(  821/  2081.)(  841/  2113.)
+     4/   4. : (    2/     2.)(  832/  2098.)(  850/  2128.)(    E/    14.)
+     8/   8. : (    0/     0.)(    1/     1.)( FFFF/    -1.)(    2/     2.)
+     C/  12. : (    0/     0.)( F000/ -4096.)(    0/     0.)(    0/     0.)
